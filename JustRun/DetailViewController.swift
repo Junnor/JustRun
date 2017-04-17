@@ -57,10 +57,10 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
 
     // MARK: - Map view delegate
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        if overlay.isKind(of: MKPolyline.self) {
-            let polyline = overlay
-            let aRender = MKPolylineRenderer(polyline: polyline as! MKPolyline)
-            aRender.strokeColor = UIColor.black
+        if overlay.isKind(of: MultiColorPolylineSegment.self) {
+            let polyline = overlay as! MultiColorPolylineSegment
+            let aRender = MKPolylineRenderer(polyline: polyline)
+            aRender.strokeColor = polyline.color
             aRender.lineWidth = 3
             return aRender
         }
@@ -84,7 +84,9 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
         if let count = self.run?.locations?.count, count > 0 {
             mapView?.isHidden = false
             mapView?.region = mapRegion()
-            mapView?.addOverlays([polyline()])
+            
+            let colorSegments = MathController.colorSegmentsForLocations(locations: self.run?.locations?.array as! [Location])
+            mapView?.addOverlays(colorSegments)
         }
     }
     

@@ -9,8 +9,9 @@
 import UIKit
 import CoreData
 import CoreLocation
+import MapKit
 
-class NewRunViewController: UIViewController, CLLocationManagerDelegate {
+class NewRunViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
 
     // MARK: - For data persistence
     
@@ -35,6 +36,8 @@ class NewRunViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var paceLabel: UILabel!
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
+    
+    @IBOutlet weak var mapView: MKMapView!
     
     // MARK: - VC lifecycle
     
@@ -99,6 +102,7 @@ class NewRunViewController: UIViewController, CLLocationManagerDelegate {
         startButton.isHidden = hiden
         promptLabel.isHidden = hiden
         
+        mapView.isHidden = reverse
         distanceLabel.isHidden = reverse
         timeLabel.isHidden = reverse
         paceLabel.isHidden = reverse
@@ -118,7 +122,7 @@ class NewRunViewController: UIViewController, CLLocationManagerDelegate {
                       repeats: true)
         let runLoop = RunLoop.current
         runLoop.add(timer, forMode: .defaultRunLoopMode)
-        
+                
         startLocationUpdates()
     }
     
@@ -154,13 +158,37 @@ class NewRunViewController: UIViewController, CLLocationManagerDelegate {
         
     }
     
+    // MARK: - Map view delegate
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        if overlay.isKind(of: MKPolyline.self) {
+            let polyline = overlay as! MKPolyline
+            let aRender = MKPolylineRenderer(polyline: polyline)
+            aRender.strokeColor = UIColor.blue
+            aRender.lineWidth = 3
+            return aRender
+        }
+        return MKOverlayRenderer()
+    }
+
+    
     // MARK: - Location Delegate
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         for newLocation in locations {
-            if newLocation.horizontalAccuracy < 20 {
+            let evenDate = newLocation.timestamp
+            let howRecent = evenDate.timeIntervalSinceNow
+            
+            if abs(howRecent) < 10.0, newLocation.horizontalAccuracy < 20 {
                 if self.locations.count > 0 {
-                    distance = Float(newLocation.distance(from: self.locations.last!))
+                    self.distance = Float(newLocation.distance(from: self.locations.last!))
+                    
+                    let cords1 = self.locations.last!.coordinate
+                    let cords2 = newLocation.coordinate
+                    
+                    let region = MKCoordinateRegionMakeWithDistance(cords2, 500, 500)
+                    self.mapView.setRegion(region, animated: true)
+                    let polyline = MKPolyline(coordinates: [cords1, cords2], count: 2)
+                    self.mapView.addOverlays([polyline])
                 }
                 self.locations.append(newLocation)
             }

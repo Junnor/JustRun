@@ -64,6 +64,7 @@
 		8BBFA5CE1E99F8EE00D09009 /* umbriel.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8BBFA5A31E99F8EE00D09009 /* umbriel.jpg */; };
 		8BBFA5D01E9A04E300D09009 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBFA5CF1E9A04E300D09009 /* HomeViewController.swift */; };
 		8BBFA5D21E9A05F100D09009 /* NewRunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBFA5D11E9A05F100D09009 /* NewRunViewController.swift */; };
+		8BFE7A481EA4D2EA000D020A /* MultiColorPolylineSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFE7A471EA4D2EA000D020A /* MultiColorPolylineSegment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -126,6 +127,7 @@
 		8BBFA5A31E99F8EE00D09009 /* umbriel.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = umbriel.jpg; sourceTree = "<group>"; };
 		8BBFA5CF1E9A04E300D09009 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8BBFA5D11E9A05F100D09009 /* NewRunViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRunViewController.swift; sourceTree = "<group>"; };
+		8BFE7A471EA4D2EA000D020A /* MultiColorPolylineSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiColorPolylineSegment.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +171,7 @@
 				8BBFA5D11E9A05F100D09009 /* NewRunViewController.swift */,
 				8BBFA5551E99F01700D09009 /* DetailViewController.swift */,
 				8BA2231E1E9A1DDC00229D4D /* MathController.swift */,
+				8BFE7A471EA4D2EA000D020A /* MultiColorPolylineSegment.swift */,
 				8BBFA5571E99F01700D09009 /* Main.storyboard */,
 				8BBFA55A1E99F01700D09009 /* Assets.xcassets */,
 				8BBFA55C1E99F01700D09009 /* LaunchScreen.storyboard */,
@@ -362,6 +365,7 @@
 				8BA2231F1E9A1DDC00229D4D /* MathController.swift in Sources */,
 				8BBFA5731E99F78200D09009 /* Location+CoreDataClass.swift in Sources */,
 				8BBFA54F1E99F01700D09009 /* AppDelegate.swift in Sources */,
+				8BFE7A481EA4D2EA000D020A /* MultiColorPolylineSegment.swift in Sources */,
 				8BBFA5D01E9A04E300D09009 /* HomeViewController.swift in Sources */,
 				8BBFA5521E99F01700D09009 /* JustRun.xcdatamodeld in Sources */,
 				8BBFA5711E99F78200D09009 /* Run+CoreDataClass.swift in Sources */,
